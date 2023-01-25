@@ -1,0 +1,55 @@
+show databases;
+use newschema;
+show tables;
+Select*from characters;
+select fname, lname, patronus from characters where not (patronus IN("Unknown") or patronus is NULL); 
+select lname from characters where lname like '%e';
+ Select*from characters;
+ Select SUM(age) from characters;
+Select fname, lname, age from characters order by age DESC;
+Select fname, age from characters where age between 50 and 100;
+SELECT distinct age from characters;
+Select*from characters where (faculty="Gryffindor"and age>30);
+SELECT distinct faculty from characters LIMIT 3;
+select fname from characters where (fname LIKE 'H____' or fname LIKE 'L%');
+select*from characters;
+DELETE from characters where char_id=11;
+select*from characters;
+select fname from characters where fname LIKE '%a%';
+select*from characters;
+select char_id,patronus from characters where not (patronus IN("Unknown") or patronus is NULL) ORDER BY patronus;
+select*from characters;
+select fname, lname from characters where lname IN("Crabbe","Granger","Diggory");
+Select MIN(age) from characters;
+SELECT char_id, fname as "Half-Blood Prince", lname, age, faculty, patronus, book_id from characters where lname="Snape";
+select*from characters;
+select*from library;
+SELECT fname from characters UNION SELECT book_name from library; 
+ select*from characters;
+ select faculty, COUNT(faculty) As number_of_students from characters  GROUP BY faculty HAVING COUNT(faculty)>1;
+ select*from characters;
+ select fname, lname, (CASE WHEN faculty="Gryffindor" THEN "Godric" WHEN faculty="Slytherin" THEN "Salazar"
+ WHEN faculty="Ravenclaw" THEN "Rowena" WHEN faculty="Hufflepuff" THEN "Helga" ELSE "Muggle" END) AS Founders from characters;
+select*from characters;
+select lname from characters where not lname REGEXP "^[H,L,S]";
+select*from characters;
+select*from library;
+SELECT characters.fname, characters.lname, library.book_name from characters JOIN library ON characters.char_id=library.char_id;
+SELECT characters.fname, characters.lname, library.book_name from characters RIGHT JOIN library ON characters.char_id=library.char_id;
+select*from characters;
+select*from library;
+SELECT library.book_name, characters.patronus from characters LEFT JOIN library ON characters.char_id=library.char_id;
+select*from characters;
+select*from library;
+SELECT characters.fname, characters.lname, characters.age,library.book_name from characters JOIN library 
+ON characters.char_id=library.char_id where characters.age>15;
+select*from characters;
+select*from library;
+SELECT characters.fname, characters.lname, library.book_name, library.start_date, library.end_date from characters 
+JOIN library ON characters.char_id=library.char_id where characters.age<15 AND characters.patronus="Unknown";
+select*from characters;
+select*from library;
+SELECT count(end_date) from library WHERE (end_date-(SELECT library.end_date from library JOIN characters 
+ON characters.char_id=library.char_id WHERE characters.fname = "Hermione"))>0;
+select*from characters;
+SELECT patronus from characters where (age-(SELECT age from characters where patronus="Unknown"))>0;
